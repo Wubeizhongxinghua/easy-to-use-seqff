@@ -12,10 +12,10 @@
 ##### SeqFF.R
 library(argparse)
 library(Rsamtools)
-parser <- ArgumentParser() #创建参数解析对象
+parser <- ArgumentParser()
 
-parser$add_argument("-f","--file.name",help='Input bam file name') #添加参数
-parser$add_argument("-o","--output.filename",help='output file name') #添加参数
+parser$add_argument("-f","--file.name",help='Input bam file name')
+parser$add_argument("-o","--output.filename",help='output file name')
 args <- parser$parse_args()
 
 ff.pred <- function(gc.norm.bc.61927, B, mu, parameter.1, parameter.2){
