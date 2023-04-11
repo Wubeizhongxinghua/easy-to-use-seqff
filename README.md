@@ -6,14 +6,15 @@
 
 + You need to prepare:
 	+ `.bam` file of a sample as input for estimating its fetal DNA fraction.
-	+ All files listed in this repo, and put in the same directory.
-	+ An R with `Rsamtools`, `argparse` installed.
+	+ All files listed in this repo., and put in the same directory.
+	+ An R software with `Rsamtools`, `argparse` installed.
 
 + And then, just run the following code in terminal:
 
 ```shell
 $ Rscript seqff.r -f input.bam -o output.txt
 ```
+Where `input.bam` is file name of your `.bam` file, and `output.txt` is the file which will store the result of seqff.
 
 ## What have been revised?
 
