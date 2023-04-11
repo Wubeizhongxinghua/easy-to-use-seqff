@@ -1,15 +1,10 @@
-##################################################################################################################################################
-##################################################################################################################################################
 ##### SeqFF.R
 ##### Sung Kim, Phd
 ##### Sequenom, Inc.
 #####
 ##### Revised by Li Mingyang
-##################################################################################################################################################
-##### Instructions
-##### Command Line 
-##### R CMD BATCH 
-##### SeqFF.R
+
+##### Input data and statements
 library(argparse)
 library(Rsamtools)
 parser <- ArgumentParser()
@@ -28,10 +23,6 @@ ff.pred <- function(gc.norm.bc.61927, B, mu, parameter.1, parameter.2){
   return(ff.hat)
 }
 
-##################################################################################################################################################
-##################################################################################################################################################
-##################################################################################################################################################
-##### COMMAND LINE ARGUMENTS
 
 file.name = args$file.name
 output.filename = args$output.filename
@@ -64,12 +55,12 @@ colnames(newtemp)=c("binName","counts")
 bininfo = merge(bininfo, newtemp, by="binName",all.x=T)
 bininfo=bininfo[order(bininfo$binorder),]
 
-##################################################################################################################################################
 ##### DATA PROCESSING
 autosomebinsonly = bininfo$BinFilterFlag==1 & bininfo$CHR!="chrX" & bininfo$CHR!="chrY"
 alluseablebins = bininfo$BinFilterFlag==1 
 autoscaledtemp  <- bininfo$counts[autosomebinsonly]/sum(bininfo$counts[autosomebinsonly], na.rm=T)
 allscaledtemp  <- bininfo$counts[alluseablebins]/sum(bininfo$counts[autosomebinsonly], na.rm=T)
+
 # additive loess correction
 mediancountpergc <- tapply(
 autoscaledtemp,bininfo$GC[autosomebinsonly], function(x) median(x, na.rm=T))
@@ -88,8 +79,9 @@ wrsc=ff.pred(bincounts,B,mu,parameter.1,parameter.2)
 enet = matrix(bincounts,nrow=1) %*% matrix(elnetbeta) + elnetintercept
 ff=c((wrsc+enet)/2, enet, wrsc)
 names(ff)=c("SeqFF","Enet","WRSC")
-save(bincounts,file=paste0(output.filename,"_bincounts.RData"))
 
+## Output
+save(bincounts,file=paste0(output.filename,"_bincounts.RData"))
 write.csv(ff, file=output.filename)
 
 
