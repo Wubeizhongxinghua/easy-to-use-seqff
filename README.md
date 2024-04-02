@@ -9,7 +9,7 @@
 	+ All files listed in this repo., and put in the same directory.
 	+ An R software with `Rsamtools`, `argparse` installed.
 
-+ And then, just run the following code in terminal:
++ And then, just run the following code in the terminal:
 
 ```shell
 $ Rscript seqff.r -f input.bam -o output.txt
@@ -21,4 +21,4 @@ Where `input.bam` is file name of your `.bam` file, and `output.txt` is the file
 + You can input `.bam` files straightly after alignment instead of `.sam` files without header.
 + Sometimes, output of `enet` would be `NA` due to `NA` values in variable `bincounts`. We set them to zeros before calculating `enet` value.
 + Less arguments needed.
-+ In some conditions, the chromosome names in `.bam` file do not contain string 'chr'. This script automatically detect it and add the 'chr' string (see [Issue #1](https://github.com/Wubeizhongxinghua/easy-to-use-seqff/issues/1)).
++ In some conditions, the chromosome names in `.bam` file do not contain string 'chr'. This script automatically detects them and adds the 'chr' strings (see [Issue #1](https://github.com/Wubeizhongxinghua/easy-to-use-seqff/issues/1)).
