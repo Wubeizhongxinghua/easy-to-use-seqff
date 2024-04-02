@@ -7,7 +7,7 @@
 + You need to prepare:
 	+ `.bam` file of a sample as input for estimating its fetal DNA fraction.
 	+ All files listed in this repo., and put in the same directory.
-	+ An R software with `Rsamtools`, `argparse` installed.
+	+ An R software with `Rsamtools`, `argparse`, `dplyr`, `stringr` installed.
 
 + And then, just run the following code in the terminal:
 
