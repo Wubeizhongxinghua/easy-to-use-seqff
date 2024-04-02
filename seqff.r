@@ -7,6 +7,8 @@
 ##### Input data and statements
 library(argparse)
 library(Rsamtools)
+library(stringr)
+library(dplyr)
 parser <- ArgumentParser()
 
 parser$add_argument("-f","--file.name",help='Input bam file name')
@@ -39,6 +41,14 @@ bininfo$binorder=c(1:61927)
 print(file.name)
 dat <- data.frame(scanBam(file.name,param=param))
 colnames(dat)=c("refChr","begin")
+
+
+# Test whether names of chromosome is correct
+if(!str_detect(dat$refChr[1], "^chr")){ #incorrect chromosome name
+	print('Your chromosome names in .bam file do not contain "chromosome", adding.... ')
+	dat <- dat %>%
+		mutate(refChr = if_else(str_detect(refChr, "^chr"), refChr, paste0("chr", refChr)))
+}
 
 print("Data read! Now processing...")
 

@@ -21,3 +21,4 @@ Where `input.bam` is file name of your `.bam` file, and `output.txt` is the file
 + You can input `.bam` files straightly after alignment instead of `.sam` files without header.
 + Sometimes, output of `enet` would be `NA` due to `NA` values in variable `bincounts`. We set them to zeros before calculating `enet` value.
 + Less arguments needed.
++ In some conditions, the chromosome names in `.bam` file do not contain string 'chr'. This script automatically detect it and add the 'chr' string (see Issue #1).
