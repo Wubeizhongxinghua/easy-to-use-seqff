@@ -13,6 +13,7 @@ parser <- ArgumentParser()
 
 parser$add_argument("-f","--file.name",help='Input bam file name')
 parser$add_argument("-o","--output.filename",help='output file name')
+parser$add_argument("--hg38",action="store_true", default=FALSE, help="Use hg38 mode, if not set, default is suitable for hg19")
 args <- parser$parse_args()
 
 ff.pred <- function(gc.norm.bc.61927, B, mu, parameter.1, parameter.2){
@@ -33,7 +34,14 @@ what <- c('rname','pos')
 param <- ScanBamParam(what=what)
 
 load("pd4615-sup-0008-file1.rdata")
-bininfo = read.csv("pd4615-sup-0010-table2.csv")
+
+if(args$hg38){
+	bininfofile = "pd4615-sup-0010-table2_hg38.csv"
+} else {
+	bininfofile = "pd4615-sup-0010-table2.csv"
+}
+
+bininfo = read.csv(bininfofile)
 colnames(bininfo)[1]="binName"
 bininfo$binorder=c(1:61927)
 
