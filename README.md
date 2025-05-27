@@ -12,7 +12,7 @@
 + And then, just run the following code in the terminal:
 
 ```shell
-$ Rscript seqff.r -f input.bam -o output.txt
+Rscript seqff.r -f input.bam -o output.txt
 ```
 Where `input.bam` is file name of your `.bam` file, and `output.txt` is the file which will store the result of seqff.
 
@@ -21,7 +21,7 @@ If your `.bam` file was aligned to hg38 genome instead of the default hg19 genom
 **When using hg38 mode, you shall read the disclaimer (on the end of the page) first!**
 
 ```shell
-$ Rscript seqff.r -f input.bam -o output.txt --hg38
+Rscript seqff.r -f input.bam -o output.txt --hg38
 ```
 
 ## What have been revised?
